@@ -3,7 +3,7 @@ Type: Package
 Title: R package lab4p
 Version: 1.0.0
 Date: 2020-09-18
-Author: Samira and Sven
+Author: Samira
 Maintainer: Samira <samba610@student.liu.se>
 Description: A package to handle linear regression models.
     Linear algebra used to create the most basic functionality in the R package.
