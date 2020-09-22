@@ -61,12 +61,20 @@ pred.linreg <- function(x){
 }
 
 coef.linreg <- function(x){
+<<<<<<< HEAD
   return(x$Coefficient)
+=======
+  return()
+>>>>>>> b6c10ccdba338fa0adabe78286478a2b26c0f94e
 }
 
 summary.linreg <- function(x){
   est_Resv <- sqrt(x$ResidualVariance)
+<<<<<<< HEAD
   return(x$Coefficient,x$tValues,pvc,est_Resv,x$DegreesOfFreedom)
+=======
+  return(x$Coefficient,x$tValues,est_Resv,x$DegreesOfFreedom)
+>>>>>>> b6c10ccdba338fa0adabe78286478a2b26c0f94e
 }
 
 
