@@ -26,13 +26,47 @@ linreg <- function(formula,data){
   Dof <- nrow(X)-ncol(X)
   #ResV is The Residual variance
   Resv <- (t(Res)%*% Res)/Dof
-  # Vrc is the variance of the regression coefficients
+  #Vrc is the variance of the regression coefficients
   Vrc <- Resv/(t(X)%*%X)
-  #tvc the t-values for each coefficient
+  #tvc is the t-values for each coefficient
   tvc <- RC/sqrt(Vrc)
+  #pvc is the p-values
+  pvc <- 2*pt(-abs(tvc,Dof))
   
-  lrplist <- list(RC,Fv,Res,Dof,Resv,Vrc,tvc)
-  attr(lrplist, "class") <- linreg()
+  lrplist <- list(Coefficient=RC,FittedValues=Fv,Residual=Res,DegreesOfFreedom=Dof,ResidualVariance=Resv,VarianceCoefficients=Vrc,tValues=tvc)
+  attr(lrplist, "class") <- "linreg"
   
   return(lrplist)
 }
+library(ggplot2)
+
+  print.linreg <- function(x) {
+  return(Coefficient,x$Coefficient)
+  }
+Atest <- linreg(formula = Petal.Lenght~Species,data= iris)
+
+plot.linreg <- function(x) {
+  
+}
+
+resid.linreg <- function(x){
+  return(as.vector(x$Residual))
+}
+
+pred <- function(x){
+  UseMethod("pred")
+}
+pred.linreg <- function(x){
+  return(x$FittedValues)
+}
+
+coef.linreg <- function(x){
+  return(x$Coefficient)
+}
+
+summary.linreg <- function(x){
+  est_Resv <- sqrt(x$ResidualVariance)
+  return(x$Coefficient,x$tValues,pvc,est_Resv,x$DegreesOfFreedom)
+}
+
+
